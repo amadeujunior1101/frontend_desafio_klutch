@@ -26,6 +26,8 @@ const GlobalStyle = createGlobalStyle`
     --unnamed-font-style-italic: italic;
     --unnamed-font-weight-bold: bold;
     --unnamed-font-weight-medium: medium;
+    --unnamed-font-size-18: 18px;
+    --unnamed-font-size-25: 25px;
     --unnamed-font-size-32: 32px;
     --unnamed-font-size-35: 35px;
     --unnamed-font-size-40: 40px;

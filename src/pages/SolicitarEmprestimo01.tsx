@@ -27,6 +27,8 @@ const SolicitarEmprestimo01 = (props: Porps) => {
 
     const [inputValue, setInputValue] = useState('');
     const [activeStatus, setActiveStatus] = useState(false);
+    const [found, setFound] = useState(false);
+    const [empty, setEmpty] = useState(true);
     const [client, setClient] = useState<ClientModel[]>([]);
 
     const handleChange = ((e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -42,31 +44,64 @@ const SolicitarEmprestimo01 = (props: Porps) => {
     const search =()=>{
         var str:string = inputValue.replace(/[^\d]+/g,'');
         if(str === ''){   
-            alert('Informe o CPF')
-        }
-        else {
+            setFound(true)
+            setEmpty(true)
+        }else {
               const  arr = Api.client;
               let client = arr.filter((item) => {
                  return item.cpf === str
-        })
+             })
 
-        if(client.length > 0){
-            setActiveStatus(true)
+            if(client.length > 0){
+                setActiveStatus(true)
+                setEmpty(false)
+                setFound(true)
                 setClient(Object(client))
                 console.log('Clients')
                 console.log(client)
-        }else{
+            }else{
+                setEmpty(false)
+                setFound(false)
                 setActiveStatus(false)
-                alert("CPF não encontrado!")
-        }
-            // setclient(Object(Api.rateTable))
-            
+                    // alert("CPF não encontrado!")
+            }            
         }
     }
     //  useEffect(()=>{
     //      setActiveBar(!activeBar)
     //     //  console.log("valor da activeBar = " + activeBar)
     //  },[rateTable])
+    // const function Instructions extends Component {}
+    // const element = <Welcome name="Sara" />;
+    const Result =(item:ClientModel)=>{
+        return (
+            <BoxBuscaCliente key={item.id}>
+                <LabelTitle>Cliente encontrado:</LabelTitle>
+                <LabelCPF>{cpfMask(item.cpf)}</LabelCPF>
+                <LabelCliente>{item.name}</LabelCliente>
+                <ButtonSolicitar>
+                    <LabelButton >Solicitar</LabelButton>
+                </ButtonSolicitar>
+            </BoxBuscaCliente>
+        )
+    }
+    const Result2 = ()=>{
+        if(empty === true && found === true){
+            return(
+                <BoxBuscaCliente style={{padding: '30px 0 50px 0'}}>
+                    <LabelTitle>Informe o CPF!</LabelTitle>
+                </BoxBuscaCliente>
+            )
+        }  if(empty === false && found === false){
+            return(
+                <BoxBuscaCliente style={{padding: '30px 0 50px 0'}}>
+                    <LabelTitle>Cliente não encontrado!</LabelTitle>
+                </BoxBuscaCliente>
+            )
+        }else{
+            return <></>
+        }
+    }
 
     return (
         <React.Fragment>
@@ -101,24 +136,15 @@ const SolicitarEmprestimo01 = (props: Porps) => {
                                 </SpanButtonValorDesejado>
                             </ButtonValorDesejado>
                         </DivValueAndButton>
-                        {
-                        activeStatus === true ?
-                        client.map(item=>(
-                            <BoxBuscaCliente key={item.id}>
-                                <LabelTitle>Cliente encontrado:</LabelTitle>
-                                <LabelCPF>{cpfMask(item.cpf)}</LabelCPF>
-                                <LabelCliente>{item.name}</LabelCliente>
-                                <ButtonSolicitar>
-                                    <LabelButton >Solicitar</LabelButton>
-                                </ButtonSolicitar>
-                            </BoxBuscaCliente>
-                        ))
-                        : 
-                        <></>
+                    {
+                            activeStatus === true?
+                                client.map(item=>(
+                                Result(item)
+                                ))
+                            :
+                            Result2()      
                     }
-                        
                     </DivCalculo>
-                    
                 </div>
             </ContainerLg>
         </Wrapper>  
