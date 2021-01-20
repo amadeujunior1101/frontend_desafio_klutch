@@ -4,6 +4,7 @@ import PlusCicle from '../img/Grupo 270.png';
 import  EnvelopSerie from '../img/_ionicons_svg_md-filing.png';
 
 import TopBar from '../components/TopBar';
+import ImgLogoVisa from '../img/visa-logo-17.png';
 
 import Api from '../services/api.json'
 import { cpfMask } from './mask';
@@ -32,89 +33,91 @@ const SolicitarEmprestimo03 = (props: Porps) => {
                         </div>
                     </DivImg>
                     <DivCalculo>
-                        <div style={{display: 'flex', width: 1000}}>
-                            <span style={{width: '100%', background: 'red', textAlign: 'center'}}>Insira os dados do Cartão:</span>
-                            <span style={{width: '100%', background: 'green', textAlign: 'center'}}>Faça o upload dos anexos do cartão:</span>                           
-                        </div>
                         <DivValueAndButton>
-                            
-                            <Input 
-                                        placeholder="Lara B Esquivel"
-                                        type="text" 
-                                        name="v"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
-                            <Input 
-                                        placeholder="Cartão de Crédito (Frente)"
-                                        type="text" 
-                                        name="c"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
-                            <Input 
-                                        placeholder="000000000000"
-                                        type="text" 
-                                        name="c"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
-                            <Input 
-                                        placeholder="Cartão de Crédito (Verso)"
-                                        type="text" 
-                                        name="f"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
-                            <Input 
-                                        placeholder="Data de Validade"
-                                        type="text" 
-                                        name="d"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
-                            <Input 
-                                        placeholder="Selfie com cartão de crédito"
-                                        type="text" 
-                                        name="Sg"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
-                            <Input 
-                                        placeholder="CVC"
-                                        type="text" 
-                                        name="S"
-                                        //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                                        //     //  const newValue = e.currentTarget.value;
-                                            
-                                        //  }}
-                                        // onChange={handleChange}
-                                        // value={inputValue}
-                            />
+                            <DivLeft>
+                                <SpanHeadForm>Insira os dados do Cartão:</SpanHeadForm>
+                                <Input
+                                            placeholder="Lara B Esquivel"
+                                            type="text" 
+                                            name="v"
+                                />
+                               <DivInput>
+                                    <DivBase>
+                                        <div>
+                                        <InputCard
+                                            placeholder="0000000000000"
+                                            type="text" 
+                                            name="v"
+                                         />
+                                        </div>
+                                        <div style={{alignItems: 'center', display: 'flex',}}>
+                                            <img src={ImgLogoVisa} width={60} height={40} alt="imagem Visa"/>
+                                        </div>   
+                                    </DivBase>
+                               </DivInput>
+                                <Input 
+                                            placeholder="Data de Validade"
+                                            type="text" 
+                                            name="c"
+                                />
+                                <Input 
+                                            placeholder="CVC"
+                                            type="text" 
+                                            name="f"
+                                />                      
+                            </DivLeft>
+                            <DivLeft>
+                                <SpanHeadForm>Faça o upload dos anexos do cartão:</SpanHeadForm>    
+                                <DivInput>
+                                    <DivBase>
+                                        <div>
+                                            <span>Cartão de Crédito (Frente)</span>
+                                        </div>
+                                        <div>
+                                            <SpanSublinhado>Adicionar</SpanSublinhado>
+                                        </div>   
+                                    </DivBase>
+                               </DivInput>
+                                <DivInput>
+                                    <DivBase>
+                                        <div>
+                                            <span>Cartão de Crédito (Verso)</span>
+                                        </div>
+                                        <div>
+                                            <SpanSublinhado>Adicionar</SpanSublinhado>
+                                        </div>   
+                                    </DivBase>
+                                </DivInput>
+                                <DivInput>
+                                    <DivBase>
+                                        <div>
+                                            <span>Selfie com cartão de crédito</span>
+                                        </div>
+                                        <div>
+                                            <SpanSublinhado>Adicionar</SpanSublinhado>
+                                        </div>   
+                                    </DivBase>
+                                </DivInput>                        
+                                <DivInfo style={{background: 'white'}}>
+                                   
+                                        <div>
+                                            <p>
+                                                Atenção: As fotos devem estar legíveis, com todas as informações visíveis do cartão.
+                                            </p>
+                                        </div>
+                                   
+                                </DivInfo>
+                                                      
+                            </DivLeft>
+                            <div style={{marginTop: 40}}>
+                            <ButtonValorDesejado onClick={(event: React.MouseEvent<HTMLElement>) =>search()} disabled={true}>
+                                <SpanButtonValorDesejado>
+                                    Continuar
+                                </SpanButtonValorDesejado>
+                            </ButtonValorDesejado>
+
+                            </div>
+                           
                         </DivValueAndButton>
                     </DivCalculo>
                 </div>
@@ -124,11 +127,91 @@ const SolicitarEmprestimo03 = (props: Porps) => {
     );
 };
 
-const Input = styled.input`
-    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 18px/24px var(--unnamed-font-family-flexo);
+const InputCard = styled.input`
+    font: var(--unnamed-font-style-italic) var(--unnamed-font-weight-bold) 18px/24px var(--unnamed-font-family-flexo);
     
     color: var(--unnamed-color-777777);
-    text-align: center;
+    text-align: left;
+    border-width:0px;
+    border:none;
+    box-shadow: none;
+    outline:none!important;
+    background: var(--unnamed-color-f8f8f8) ;
+
+    /* width: 450px; */
+    height: 60px;
+    border-radius: 5px;
+    margin: 10px 0  10px 0;
+    /* padding-left: 20px; */
+`;
+
+const SpanSublinhado = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+const DivBase = styled.div`
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+`;
+const SpanHeadForm = styled.span`
+  font: var(--unnamed-font-style-normal)  18px var(--unnamed-font-family-flexo);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-228a95);
+
+  text-align: center;
+  margin-bottom: 20px;
+`;
+const DivLeft = styled.div`
+  display: grid;
+  width: 50%;
+  justify-content: center; 
+  margin-top: 100px;
+`;
+const DivInfo= styled.div`
+    font: var(--unnamed-font-style-normal) 18px/24px var(--unnamed-font-family-flexo);
+    
+    color: var(--unnamed-color-228a95);
+    text-align: left;
+    border-width:0px;
+    border:none;
+    box-shadow: none;
+    outline:none!important;
+    background: var(--unnamed-color-ffffff);
+
+    width: 450px;
+    height: 62px;
+    border-radius: 5px;
+    margin: 0  0  10px 0;
+    align-items: center;
+    display: flex;
+`;
+const DivInput = styled.div`
+    font: var(--unnamed-font-style-italic) var(--unnamed-font-weight-bold) 18px/24px var(--unnamed-font-family-flexo);
+    
+    color: var(--unnamed-color-777777);
+    text-align: left;
+    border-width:0px;
+    border:none;
+    box-shadow: none;
+    outline:none!important;
+    background: var(--unnamed-color-f8f8f8) ;
+
+    /* width: 450px; */
+    height: 62px;
+    border-radius: 5px;
+    margin: 10px 0  10px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    display: flex;
+`;
+const Input = styled.input`
+    font: var(--unnamed-font-style-italic) var(--unnamed-font-weight-bold) 18px/24px var(--unnamed-font-family-flexo);
+    
+    color: var(--unnamed-color-777777);
+    text-align: left;
     border-width:0px;
     border:none;
     box-shadow: none;
@@ -138,7 +221,8 @@ const Input = styled.input`
     width: 450px;
     height: 60px;
     border-radius: 5px;
-    margin: 0 5px 20px 5px;
+    margin: 10px 0  10px 0;
+    padding-left: 20px;
 `;
 const SpanInfo = styled.span`
     font: var(--unnamed-font-style-normal) normal  var(--unnamed-font-size-18) var(--unnamed-font-family-flexo);
@@ -214,10 +298,10 @@ const TitleValorDesejado = styled.span`
 
 const DivValueAndButton = styled.div`
    display: flex;
-   align-items: center;
+   align-items: flex-start;
    text-align: center;
    flex-wrap: wrap; 
-   justify-content: space-between;
+   justify-content: center;
    width: 1000px;
 `;
 
@@ -232,11 +316,11 @@ const ButtonValorDesejado = styled.button`
     cursor: pointer;
     border:none!important;
     outline-style: none;
-        :disabled{
+        /* :disabled{
             background: var(--unnamed-color-228a95);
             opacity: 0.4;
             cursor: text;
-        }
+        } */
 `;
 
 export default SolicitarEmprestimo03;
