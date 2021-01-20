@@ -52,7 +52,7 @@
             "id": 1,
             "name": "Teste Cliente",
             "phone": "71999999999",
-            "cpf": "9999999999",
+            "cpf": "99999999999",
             "bank": {
                 "label": "003 - Banco da Amazonia S.A.",
                 "accountTypeLabel": "Conta Corrente",
@@ -63,7 +63,7 @@
             "id": 1,
             "name": "Teste Cliente",
             "phone": "71222222222",
-            "cpf": "2222222229",
+            "cpf": "22222222299",
             "bank": {
                 "label": "003 - Banco da Amazonia S.A.",
                 "accountTypeLabel": "Conta Corrente",
@@ -75,16 +75,16 @@
         {
             "id": 1,
             "clientId": 1,
-            "installmentInterest": 20.5,
-            "installmentInterestValue": 20.5,
+            "installmentInterest": 20.5,  "_comment1": "Juros parcelados",
+            "installmentInterestValue": 20.5, "_comment2": "Valor de juros parcelado",
             "comission": 5.5,
             "comissionValue": 122.21,
-            "installmentValue": 1338.76,
+            "installmentValue": 1338.76, "_comment3": "Valor da parcela",
             "cardNumber": "4012001037141112",
-            "desiredValue": 2222,
-            "totalLoan": 2677.51,
-            "installmentId": 4,
-            "rateTableId": 2
+            "desiredValue": 2222, "_comment4": "Valor desejado",
+            "totalLoan": 2677.51, "_comment5": "Empréstimo total",
+            "installmentId": 4, "_comment6": "Id de parcelamento",
+            "rateTableId": 2, "_comment7": "Tabela de taxas"
         }
     ]
 }
