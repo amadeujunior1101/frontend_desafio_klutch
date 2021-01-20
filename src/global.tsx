@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     --unnamed-color-fd8030: #FD8030;
     --unnamed-color-187680: #187680;
     --unnamed-color-777777: #777777;
+    --unnamed-color-E8FFE3: #E8FFE3;
     --unnamed-color-bc3434: #BC3434;
     --unnamed-color-f8f8f8: #F8F8F8;
     /* font-size: 60%; */
