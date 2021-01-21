@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
      body {
@@ -36,7 +36,5 @@ const GlobalStyle = createGlobalStyle`
     --unnamed-line-spacing-43: 43px;
     --unnamed-line-spacing-47: 47px;
 }
-`
-export {
-    GlobalStyle
-}
+`;
+export { GlobalStyle };
