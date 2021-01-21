@@ -14,7 +14,7 @@ type Porps = {
 
 }
 
-const SolicitarEmprestimo04 = (props: Porps) => {
+const SolicitarEmprestimo05 = (props: Porps) => {
     interface RatetableModel {
         id: number;
         name: string;
@@ -52,154 +52,91 @@ const SolicitarEmprestimo04 = (props: Porps) => {
                 <div style={{display: 'grid', width: '100%'}}>
                     <DivImg>
                         <div style={{display: 'flex', alignItems: 'center',}}>
-                            <Img src={PlusCicle} alt="" width={50} height={60}/>    
+                            <Img src={PlusCicle} alt="" width={50} height={58}/>    
                             <Img src={EnvelopSerie} alt=""/>
                             <div style={{width: 300}}>
                                 <Title>Solicitar Emprestimo</Title>
                             </div>
                         </div>
-                        <DivBaseSelectTop>
-                            <DivTitleSelect>
-                                <SpanSelect>Tabela</SpanSelect>
-                            </DivTitleSelect>
-                            <DivSelect>
-                                <Select name="" id="" >
-                                    <SelectOption value="tabela">Tabela Padrão</SelectOption>
-                                    <SelectOption value="tabela">Tabela Especial</SelectOption>
-                                </Select>
-                                 
-                            </DivSelect>
-                        </DivBaseSelectTop>
+                       
                     </DivImg>
 
+                    <SpanHeadForm>Solicitação Realizada com Sucesso!</SpanHeadForm>
 
-                   <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 40}}>
+                    <SpanTipoContrato2>Resumo da Solicitação</SpanTipoContrato2>
+
+                   <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 20}}>
                        <div style={{width: '100%', justifyContent: 'flex-start', display: 'grid',}}>
-                        <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
+                            <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
+                                    <DivTitleSelect>
+                                        <SpanSelect>João Paulo Guedes</SpanSelect>
+                                    </DivTitleSelect>
+                                    <DivTitleSelect>
+                                        <SpanSelect>71 9988-7766</SpanSelect>
+                                        <img src={IconChecked} alt="" width={30} height={30} />
+                                    </DivTitleSelect>
+                                   
+                            </DivBaseSelectTop2>
+                            <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
                                     <DivTitleSelect>
                                         <SpanSelect>Valor desejado:</SpanSelect>
                                     </DivTitleSelect>
-                                    <DivSelect>
-                                        <Input
-                                                placeholder=""
-                                                type="text" 
-                                                name="v"
-                                        />
-                                        {/* <Select name="" id="" >
-                                            <SelectOption value="tabela">R$1.000,00</SelectOption>
-                                        </Select> */}
-                                    </DivSelect>
-                            </DivBaseSelectTop2>
-                        <DivBaseSelectTop2>
                                     <DivTitleSelect>
-                                        <SpanSelect>Parcelas:</SpanSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
                                     </DivTitleSelect>
-                                    <DivSelect>
-                                        <Select name="" id="" >
-                                            <SelectOption value="tabela">1</SelectOption>
-                                            <SelectOption value="tabela">2</SelectOption>
-                                        </Select>
-                                    </DivSelect>
+                            </DivBaseSelectTop2>
+                            <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
                             </DivBaseSelectTop2>
                        
                        </div>
                        <div style={{width: '100%', justifyContent: 'flex-end', display: 'grid',}}>
-                                <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
-                                        <DivTitleSelect>
-                                            <SpanSelect>Valor Total do Empréstimo:</SpanSelect>
-                                        </DivTitleSelect>
-                                        <DivSelect>
-                                            <Input
-                                                    placeholder=""
-                                                    type="text" 
-                                                    name="v"
-                                            />
-                                        {/* <Select name="" id="" >
-                                            <SelectOption value="tabela">R$1.000,00</SelectOption>
-                                        </Select> */}
-                                    </DivSelect>
-                                </DivBaseSelectTop2>
-                            <DivBaseSelectTop2>
-                                        <DivTitleSelect>
-                                            <SpanSelect>Valor da parcela:</SpanSelect>
-                                        </DivTitleSelect>
-                                        <DivSelect>
-                                            <Input
-                                                    placeholder=""
-                                                    type="text" 
-                                                    name="v"
-                                            />
-                                        </DivSelect>
-                                </DivBaseSelectTop2>
+                       <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                            </DivBaseSelectTop2>
+                            <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                            </DivBaseSelectTop2>
+                            <DivBaseSelectTop2 style={{background: '#E8FFE3'}}>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                                    <DivTitleSelect>
+                                        <SpanSelect>Valor desejado:</SpanSelect>
+                                    </DivTitleSelect>
+                            </DivBaseSelectTop2>
                        </div>
 
                    </div>   
-                   <SpanTipoContrato>Escolha o tipo de contrato:</SpanTipoContrato>
 
-                   <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 20}}>
-                       <div style={{width: '100%', display: 'flex', paddingRight: 20}}>
+                   <div style={{display: 'grid', justifyContent: 'center', textAlign: 'center', marginTop: 20}}>
+                       <div style={{width: 420, display: 'flex',}}>
                             <ButtonValorDesejado onClick={(event: React.MouseEvent<HTMLElement>) =>search()} >
                                 <SpanButtonValorDesejado>
-                                    Automático
-                                </SpanButtonValorDesejado>
-                            </ButtonValorDesejado>
-                            <ButtonValorDesejado onClick={(event: React.MouseEvent<HTMLElement>) =>search()} disabled={true} style={{background: '#ffffff'}}>
-                                <SpanButtonValorDesejado style={{color:'#228a95'}}>
-                                    Manual
+                                    Detalhe da Solicitação
                                 </SpanButtonValorDesejado>
                             </ButtonValorDesejado>
                        
                        </div>
-                       <div style={{width: '100%',  display: 'grid', paddingLeft: 20}}>
-                       <ButtonValorDesejado onClick={(event: React.MouseEvent<HTMLElement>) =>search()} disabled={true}>
-                                <img src={IconChecked} width={25} height={25} alt="" style={{marginRight: 10}} />
-                                <SpanButtonValorDesejado>
-                                    Concluir
-                                </SpanButtonValorDesejado>
-                            </ButtonValorDesejado>
-                       </div>
-
+                         <SpanTipoContrato>O CredFica avaliará a solicitação.</SpanTipoContrato>
                    </div>   
-
             <div>
-            <DivTable>
-                                    {
-                            rateTable.map(item=>
-                            <React.Fragment  key={item.id}>
-                                <TitleNameTable >{item.name}</TitleNameTable>
-                                <div style={{display: 'flex'}}>
-                               
-                                <Table >
-                                    <tr >
-                                     
-                                        <TableColTitle>Parcela</TableColTitle>
-                                        <TableColTitle>Juros da Parcela</TableColTitle>
-                                        <TableColTitle>Valor Parcela</TableColTitle>
-                                        <TableColTitle>Valor Total</TableColTitle>
-                                        <TableColTitle>Comissão Parceiro</TableColTitle>
-                                    </tr>
-
-                                    {
-                                        item.installments.map(item2=> 
-                                    <tr>
-                                        <TableColItem>{item2.installments}</TableColItem>
-                                        <TableColItem>{item2.installmentInterest}%</TableColItem>
-                                        <TableColItem>R${item2.installmentValue}</TableColItem>
-                                        <TableColItem>R${item2.fullValue}</TableColItem>
-                                        <TableColItem>R${item2.comission}</TableColItem>
-                        
-                                    </tr>
-                                        )
-                                    }
-
-                                </Table>
-                                </div>
-                                
-                        </React.Fragment>
-                            )
-                        }
-        
-                    </DivTable> 
+           
             </div>
 
                 </div>
@@ -209,9 +146,29 @@ const SolicitarEmprestimo04 = (props: Porps) => {
     );
 };
 
+const SpanHeadForm = styled.span`
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 40px/55px var(--unnamed-font-family-flexo);
+
+    /* font: var(--unnamed-font-style-normal)  18px var(--unnamed-font-family-flexo); */
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-228a95);
+
+    text-align: center;
+    /* margin-bottom: 20px; */
+    margin-top: 40px;
+`;
+
 const SpanTipoContrato = styled.span`
     font: var(--unnamed-font-style-normal) 21px/24px var(--unnamed-font-family-flexo);
-    
+    margin: 20px 0 20px 0;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-228a95);
+    text-align: center;
+`;
+
+const SpanTipoContrato2 = styled.span`
+    font: var(--unnamed-font-style-normal) 21px/24px var(--unnamed-font-family-flexo);
+    margin: 20px 0 0 0;
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(--unnamed-color-228a95);
     text-align: left;
@@ -267,6 +224,7 @@ const DivTitleSelect = styled.div`
 const SpanSelect = styled.span`
     font: var(--unnamed-font-style-italic) normal var(--unnamed-font-weight-bold) 16px/30px var(--unnamed-font-family-flexo);
     color: var(--unnamed-color-228a95);
+    margin-right: 10px;
 `;  
 const DivBaseSelectTop = styled.div`
     background: var(--unnamed-color-f8f8f8);
@@ -281,6 +239,7 @@ const DivBaseSelectTop2 = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 550px;
+    height: 80px;
     justify-content: space-between;
     margin-bottom: 20px;
 `;  
@@ -414,4 +373,4 @@ margin-top: 50px;
     justify-content: center;
 `;
 
-export default SolicitarEmprestimo04;
+export default SolicitarEmprestimo05;
