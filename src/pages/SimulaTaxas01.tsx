@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import PlusCicle from "../img/Grupo 270.png";
 import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
@@ -6,10 +6,13 @@ import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
 import TopBar from "../components/TopBar";
 
 import Api from "../services/api.json";
+import { PostsContext } from '../context/Context';
 
 type Porps = {};
 
 const SimulaTaxas01 = (props: Porps) => {
+  const { posts, tableMode} = useContext(PostsContext)
+  // let arr = [tableData]
   interface RatetableModel {
     id: number;
     name: string;
@@ -32,9 +35,13 @@ const SimulaTaxas01 = (props: Porps) => {
 
   const [inputValue, setInputValue] = useState("");
   const [activeBar, setActiveBar] = useState(false);
-  const [lineColor, setLineColor] = useState(false);
-  const [selectTable, setSelectTable] = useState(["false", "true"]);
+  // const [tableName, setTableName] = useState("");
+  const [lineId, setLineId] = useState(0);
+  const [selectTable, setSelectTable] = useState(0);
   const [rateTable, setRateTable] = useState<RatetableModel[]>([]);
+
+  const [posts1, setPosts] = useState(posts);
+  const [isLoading, setIsLoading] = useState(false);
 
   // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //     // No longer need to cast to any - hooray for react!
@@ -53,7 +60,11 @@ const SimulaTaxas01 = (props: Porps) => {
   const onValueChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     console.log(e.currentTarget.value);
     // setInputValue(e.currentTarget.value);
-    let item: object = [];
+    let item = {
+      default: Boolean
+    }
+
+    setSelectTable(Number(e.currentTarget.value))
   };
 
   const calcular = () => {
@@ -80,10 +91,46 @@ const SimulaTaxas01 = (props: Porps) => {
     cursor: "pointer",
     background: "#f8f8f8",
   };
-  const selectTableLine = (item: object) => {
-    setLineColor(true);
+
+  interface item {
+    id: number;
+    installments: number;
+    installmentInterest: number;
+    installmentValue: number;
+    fullValue: number;
+    comission: number;
+  }
+  interface tableData2 {
+    tableName: string;
+    installmentsNumber: number;
+    installmentValue: number;
+  }
+
+  const selectTableLine = (item: item, item2: RatetableModel) => {
+    // setLineColor(true);
     console.log("Os itens");
     console.log(item);
+
+    setLineId(item.id);
+    setSelectTable(item2.id);
+    // setTableData(item2)
+    const { name } = item2
+
+    // const obj:tableData = {
+    //   tableName: item2.name,
+    //   installmentsNumber: item.installmentInterest,
+    //   installmentValue: item.installmentValue,
+    // }
+
+    // setTableData(obj)
+    const v: string = "Table"
+    console.log("tabela");
+    posts.push({ name: name })
+
+    tableMode.name = item2.name;
+    console.log(posts);
+    console.log(tableMode);
+
   };
 
   const teste = (item: tableModel) => {
@@ -152,12 +199,12 @@ const SimulaTaxas01 = (props: Porps) => {
                         type="radio"
                         style={{ margin: "auto 20px auto 20px" }}
                         // value={1}
-                        checked={teste(item)}
+                        checked={selectTable === item.id}
                         // onChange={this.onSiteChanged}
 
                         value={item.id}
-                        // checked={selectedOption === "Male"}
-                        onChange={onValueChange}
+                      // checked={selectedOption === "Male"}
+                      // onChange={onValueChange}
                       />
                     </div>
                     <Table>
@@ -178,9 +225,9 @@ const SimulaTaxas01 = (props: Porps) => {
                                         </TableColItem> */}
                       {item.installments.map((item2) => (
                         <tr
-                          onClick={() => selectTableLine(item2)}
+                          onClick={() => selectTableLine(item2, item)}
                           style={
-                            lineColor === true
+                            lineId === item2.id
                               ? activeLineTable
                               : noActiveLineTable
                           }
@@ -213,17 +260,23 @@ const SimulaTaxas01 = (props: Porps) => {
         {activeBar === true ? (
           <BottomBar>
             <ContainerLg1>
-              <SpanBottomBar>
-                Nome: Tabela Padrão Parcelas: 2 Valor da Parcela: R$1.115,00
-              </SpanBottomBar>
+
+              {/* {
+                  arr.map(item=>(
+                    <SpanBottomBar>
+                       Nome: {item.name} Parcelas: 2 Valor da Parcela: R$1.115,00
+                  </SpanBottomBar>
+                  ))
+                } */}
+
               <ButtonValorDesejado>
                 <SpanButtonValorDesejado>Enviar</SpanButtonValorDesejado>
               </ButtonValorDesejado>
             </ContainerLg1>
           </BottomBar>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </Wrapper>
     </React.Fragment>
   );

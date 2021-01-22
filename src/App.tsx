@@ -7,12 +7,14 @@ import SolicitarEmprstimo04 from "./pages/SolicitarEmprestimo04";
 import SolicitarEmprstimo05 from "./pages/SolicitarEmprestimo05";
 import { GlobalStyle } from "./global";
 
+import {PostsContext, postsContextDefaultValue} from "./context/Context";
+
 function App() {
   return (
-    <>
-      <GlobalStyle />
-      <SimulaTaxas01 />
-    </>
+    <PostsContext.Provider value={postsContextDefaultValue}>
+        <GlobalStyle />
+        <SimulaTaxas01 />
+    </PostsContext.Provider>
   );
 }
 
