@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import PlusCicle from "../img/Grupo 270.png";
 import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
@@ -6,11 +7,14 @@ import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
 import TopBar from "../components/TopBar";
 
 import Api from "../services/api.json";
+import { useAuth } from '../context/Context2';
 import { cpfMask } from "./mask";
 
 type Porps = {};
 
 const SolicitarEmprestimo01 = (props: Porps) => {
+  const { user, dadosUser } = useAuth()
+
   interface ClientModel {
     id: number;
     name: string;
@@ -37,9 +41,11 @@ const SolicitarEmprestimo01 = (props: Porps) => {
     // if((e.currentTarget.value) === ''){
     //     setActiveBar(false)
     // }
-
     setInputValue(cpfMask(e.target.value));
   };
+
+  const history = useHistory();
+  const handleClick = () => history.push('/solicitar_emprestimo02');
 
   const search = () => {
     var str: string = inputValue.replace(/[^\d]+/g, "");
@@ -57,6 +63,9 @@ const SolicitarEmprestimo01 = (props: Porps) => {
         setEmpty(false);
         setFound(true);
         setClient(Object(client));
+        dadosUser(client)
+        console.log("Context User")
+        console.log(user)
         console.log("Clients");
         console.log(client);
       } else {
@@ -74,12 +83,16 @@ const SolicitarEmprestimo01 = (props: Porps) => {
   // const function Instructions extends Component {}
   // const element = <Welcome name="Sara" />;
   const Result = (item: ClientModel) => {
+    // const [userInfo, setUserInfo] = useState(user)
+    // dadosUser(client);
+    // console.log("imprimindo")
+    // console.log(item)
     return (
       <BoxBuscaCliente key={item.id}>
         <LabelTitle>Cliente encontrado:</LabelTitle>
         <LabelCPF>{cpfMask(item.cpf)}</LabelCPF>
         <LabelCliente>{item.name}</LabelCliente>
-        <ButtonSolicitar>
+        <ButtonSolicitar onClick={handleClick}>
           <LabelButton>Solicitar</LabelButton>
         </ButtonSolicitar>
       </BoxBuscaCliente>

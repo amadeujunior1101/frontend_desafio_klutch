@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from 'react-router-dom';
 import styled from "styled-components";
 import PlusCicle from "../img/Grupo 270.png";
 import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
@@ -6,13 +7,15 @@ import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
 import TopBar from "../components/TopBar";
 
 import Api from "../services/api.json";
-import { PostsContext } from '../context/Context';
+import { useAuth } from '../context/Context2';
 
 type Porps = {};
 
-const SimulaTaxas01 = (props: Porps) => {
-  const { posts, tableMode} = useContext(PostsContext)
-  // let arr = [tableData]
+const SimularTaxas01 = (props: Porps) => {
+  const { dadosEmprestimo, pedidoEmprestimo } = useAuth()
+  const [arr, setArr] = useState(pedidoEmprestimo)
+  const [loading, setLoading] = useState(true)
+
   interface RatetableModel {
     id: number;
     name: string;
@@ -35,19 +38,9 @@ const SimulaTaxas01 = (props: Porps) => {
 
   const [inputValue, setInputValue] = useState("");
   const [activeBar, setActiveBar] = useState(false);
-  // const [tableName, setTableName] = useState("");
   const [lineId, setLineId] = useState(0);
   const [selectTable, setSelectTable] = useState(0);
   const [rateTable, setRateTable] = useState<RatetableModel[]>([]);
-
-  const [posts1, setPosts] = useState(posts);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     // No longer need to cast to any - hooray for react!
-  //     // setInputValue(e.target.value);
-  //     console.log('Valor digitado' + e)
-  // }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     // console.log(e.currentTarget.value)
@@ -78,7 +71,7 @@ const SimulaTaxas01 = (props: Porps) => {
       console.log("valor permitido para emprestimos");
       // console.log(Api.rateTable)
       const data: object = Api.rateTable;
-      setActiveBar(true);
+
       console.log(data);
       setRateTable(Object(Api.rateTable));
     }
@@ -108,8 +101,8 @@ const SimulaTaxas01 = (props: Porps) => {
 
   const selectTableLine = (item: item, item2: RatetableModel) => {
     // setLineColor(true);
-    console.log("Os itens");
-    console.log(item);
+    // console.log("Os itens");
+    // console.log(item);
 
     setLineId(item.id);
     setSelectTable(item2.id);
@@ -121,16 +114,27 @@ const SimulaTaxas01 = (props: Porps) => {
     //   installmentsNumber: item.installmentInterest,
     //   installmentValue: item.installmentValue,
     // }
+    interface Emprestimo {
+      nameTabela: string,
+      quantParcelas: number,
+      valorParcelas: number,
+    }
 
-    // setTableData(obj)
-    const v: string = "Table"
-    console.log("tabela");
-    posts.push({ name: name })
+    let obj: Emprestimo = {
+      nameTabela: item2.name,
+      quantParcelas: item.installments,
+      valorParcelas: item.installmentValue,
+    }
 
-    tableMode.name = item2.name;
-    console.log(posts);
-    console.log(tableMode);
-
+    dadosEmprestimo(obj);
+    setArr(obj);
+    setActiveBar(true);
+    setLoading(false);
+    // console.log("Dados")
+    // console.log(pedidoEmprestimo)
+    // setName(item2.name)
+    // console.log("Nome")
+    // console.log(name)
   };
 
   const teste = (item: tableModel) => {
@@ -140,10 +144,9 @@ const SimulaTaxas01 = (props: Porps) => {
       return false;
     }
   };
-  //  useEffect(()=>{
-  //      setActiveBar(!activeBar)
-  //     //  console.log("valor da activeBar = " + activeBar)
-  //  },[rateTable])
+
+  const history = useHistory();
+  const handleClick = () => history.push('/solicitar_emprestimo01');
 
   return (
     <React.Fragment>
@@ -261,15 +264,12 @@ const SimulaTaxas01 = (props: Porps) => {
           <BottomBar>
             <ContainerLg1>
 
-              {/* {
-                  arr.map(item=>(
-                    <SpanBottomBar>
-                       Nome: {item.name} Parcelas: 2 Valor da Parcela: R$1.115,00
-                  </SpanBottomBar>
-                  ))
-                } */}
 
-              <ButtonValorDesejado>
+              <SpanBottomBar>
+                Nome: {arr?.nameTabela} Parcelas: {arr?.quantParcelas} Valor da Parcela: R${arr?.valorParcelas}
+              </SpanBottomBar>
+
+              <ButtonValorDesejado onClick={handleClick}>
                 <SpanButtonValorDesejado>Enviar</SpanButtonValorDesejado>
               </ButtonValorDesejado>
             </ContainerLg1>
@@ -450,4 +450,4 @@ const ButtonValorDesejado = styled.div`
   cursor: pointer;
 `;
 
-export default SimulaTaxas01;
+export default SimularTaxas01;

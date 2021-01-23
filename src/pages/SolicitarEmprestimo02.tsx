@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import PlusCicle from "../img/Grupo 270.png";
 import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
@@ -6,12 +7,17 @@ import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
 import TopBar from "../components/TopBar";
 
 import Api from "../services/api.json";
+import { useAuth } from '../context/Context2';
 import { cpfMask } from "./mask";
 
 type Porps = {};
 
 const SolicitarEmprestimo02 = (props: Porps) => {
+  const { user, dadosUser } = useAuth()
   const search = () => {};
+
+  const history = useHistory();
+  const handleClick = () => history.push('/solicitar_emprestimo03');
 
   return (
     <React.Fragment>
@@ -30,7 +36,7 @@ const SolicitarEmprestimo02 = (props: Porps) => {
               <TitleValorDesejado>Escolha a modalidade</TitleValorDesejado>
               <DivValueAndButton>
                 <ButtonValorDesejado
-                  onClick={(event: React.MouseEvent<HTMLElement>) => search()}
+                  onClick={handleClick}
                 >
                   <SpanButtonValorDesejado>
                     Cartão de Crédito

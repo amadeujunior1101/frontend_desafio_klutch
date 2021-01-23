@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import PlusCicle from "../img/Grupo 270.png";
 import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
@@ -12,7 +13,9 @@ import { cpfMask } from "./mask";
 type Porps = {};
 
 const SolicitarEmprestimo03 = (props: Porps) => {
-  const search = () => {};
+
+  const history = useHistory();
+  const handleClick = () => history.push('/solicitar_emprestimo04');
 
   return (
     <React.Fragment>
@@ -99,7 +102,7 @@ const SolicitarEmprestimo03 = (props: Porps) => {
                 </DivLeft>
                 <div style={{ marginTop: 40 }}>
                   <ButtonValorDesejado
-                    onClick={(event: React.MouseEvent<HTMLElement>) => search()}
+                    onClick={handleClick}
                     disabled={true}
                   >
                     <SpanButtonValorDesejado>Continuar</SpanButtonValorDesejado>
