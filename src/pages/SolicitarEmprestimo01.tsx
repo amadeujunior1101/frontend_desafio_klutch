@@ -63,11 +63,11 @@ const SolicitarEmprestimo01 = (props: Porps) => {
         setEmpty(false);
         setFound(true);
         setClient(Object(client));
-        dadosUser(client)
+        dadosUser(client[0])
         console.log("Context User")
         console.log(user)
-        console.log("Clients");
-        console.log(client);
+        // console.log("Clients");
+        // console.log(client);
       } else {
         setEmpty(false);
         setFound(false);

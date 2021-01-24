@@ -8,11 +8,13 @@ import TopBar from "../components/TopBar";
 import ImgLogoVisa from "../img/visa-logo-17.png";
 
 import Api from "../services/api.json";
+import { useAuth } from '../context/Context2';
 import { cpfMask } from "./mask";
 
 type Porps = {};
 
 const SolicitarEmprestimo03 = (props: Porps) => {
+  const { user, dadosUser } = useAuth()
 
   const history = useHistory();
   const handleClick = () => history.push('/solicitar_emprestimo04');
@@ -34,12 +36,12 @@ const SolicitarEmprestimo03 = (props: Porps) => {
               <DivValueAndButton>
                 <DivLeft>
                   <SpanHeadForm>Insira os dados do Cartão:</SpanHeadForm>
-                  <Input placeholder="Lara B Esquivel" type="text" name="v" />
+                  <Input placeholder="Nome igual no cartão" type="text" name="v" />
                   <DivInput>
                     <DivBase>
                       <div>
                         <InputCard
-                          placeholder="0000000000000"
+                          placeholder="Número impresso no cartão"
                           type="text"
                           name="v"
                         />
@@ -103,7 +105,6 @@ const SolicitarEmprestimo03 = (props: Porps) => {
                 <div style={{ marginTop: 40 }}>
                   <ButtonValorDesejado
                     onClick={handleClick}
-                    disabled={true}
                   >
                     <SpanButtonValorDesejado>Continuar</SpanButtonValorDesejado>
                   </ButtonValorDesejado>

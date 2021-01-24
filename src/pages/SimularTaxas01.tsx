@@ -115,15 +115,23 @@ const SimularTaxas01 = (props: Porps) => {
     //   installmentValue: item.installmentValue,
     // }
     interface Emprestimo {
+      idTabela: number,
       nameTabela: string,
       quantParcelas: number,
       valorParcelas: number,
+      jurosParcelas: number,
+      comissao: number,
+      valorDesejado: number,
     }
 
     let obj: Emprestimo = {
+      idTabela: item2.id,
       nameTabela: item2.name,
       quantParcelas: item.installments,
       valorParcelas: item.installmentValue,
+      jurosParcelas: item.installmentInterest,
+      comissao: item.comission,
+      valorDesejado: Number(inputValue)
     }
 
     dadosEmprestimo(obj);
@@ -153,39 +161,40 @@ const SimularTaxas01 = (props: Porps) => {
       <TopBar />
       <Wrapper>
         <ContainerLg>
-          <div style={{ display: "grid", width: "100%" }}>
+          <DivGeneral>
             <DivImg>
-              <Img src={PlusCicle} alt="" />
-              <Img src={EnvelopSerie} alt="" />
-              <div style={{ width: 300 }}>
+              <DivImagesTop>
+                <Img src={PlusCicle} alt="" width={80} height={80} />
+                <Img src={EnvelopSerie} alt="" />
+              </DivImagesTop>
+
+              <DivTitle>
                 <Title>Simulação de Taxas</Title>
-              </div>
+              </DivTitle>
             </DivImg>
             <DivCalculo>
               <TitleValorDesejado>Valor Desejado</TitleValorDesejado>
               <DivValueAndButton>
                 <InputValorDesejado>
-                  {/* <input type="text" name="name" /> */}
                   <ValorDesejado
                     placeholder="R$0,00"
                     type="text"
                     name="valor_desejado"
-                    //  onChange ={ (e: React.FormEvent<HTMLInputElement>) => {
-                    //     //  const newValue = e.currentTarget.value;
-
-                    //  }}
                     onChange={handleChange}
                     value={inputValue}
                   />
                 </InputValorDesejado>
-                <ButtonValorDesejado
-                  onClick={(event: React.MouseEvent<HTMLElement>) => calcular()}
-                >
-                  <SpanButtonValorDesejado>Calcular</SpanButtonValorDesejado>
-                </ButtonValorDesejado>
+                <DivButtom>
+                  <ButtonValorDesejado
+                    onClick={(event: React.MouseEvent<HTMLElement>) => calcular()}
+                  >
+                    <SpanButtonValorDesejado>Calcular</SpanButtonValorDesejado>
+                  </ButtonValorDesejado>
+                </DivButtom>
+
               </DivValueAndButton>
             </DivCalculo>
-            <DivTable>
+           <DivTable>
               {rateTable.map((item) => (
                 <React.Fragment key={item.id}>
                   <TitleNameTable>{item.name}</TitleNameTable>
@@ -201,31 +210,18 @@ const SimularTaxas01 = (props: Porps) => {
                       <input
                         type="radio"
                         style={{ margin: "auto 20px auto 20px" }}
-                        // value={1}
                         checked={selectTable === item.id}
-                        // onChange={this.onSiteChanged}
-
                         value={item.id}
-                      // checked={selectedOption === "Male"}
-                      // onChange={onValueChange}
                       />
                     </div>
                     <Table>
                       <tr>
-                        {/* <TableColTitle style={{width: 50}}> - </TableColTitle> */}
                         <TableColTitle>Parcela</TableColTitle>
                         <TableColTitle>Juros da Parcela</TableColTitle>
                         <TableColTitle>Valor Parcela</TableColTitle>
                         <TableColTitle>Valor Total</TableColTitle>
                         <TableColTitle>Comissão Parceiro</TableColTitle>
                       </tr>
-                      {/* <TableColItem rowSpan={2}>
-                                                <input type="radio" 
-                                                    value={1} 
-                                                    checked={item.default === true? true: false} 
-                                                    // onChange={this.onSiteChanged} 
-                                                />
-                                        </TableColItem> */}
                       {item.installments.map((item2) => (
                         <tr
                           onClick={() => selectTableLine(item2, item)}
@@ -246,29 +242,19 @@ const SimularTaxas01 = (props: Porps) => {
                           <TableColItem>R${item2.comission}</TableColItem>
                         </tr>
                       ))}
-                      {/* <tr>
-                                        <TableColItem>2</TableColItem>
-                                        <TableColItem>20%</TableColItem>
-                                        <TableColItem>R$1.115,00</TableColItem>
-                                        <TableColItem>R$1.115,00</TableColItem>
-                                        <TableColItem>R$1.115,00</TableColItem>
-                                    </tr>                                 */}
                     </Table>
                   </div>
                 </React.Fragment>
               ))}
             </DivTable>
-          </div>
+          </DivGeneral>
         </ContainerLg>
         {activeBar === true ? (
           <BottomBar>
             <ContainerLg1>
-
-
               <SpanBottomBar>
                 Nome: {arr?.nameTabela} Parcelas: {arr?.quantParcelas} Valor da Parcela: R${arr?.valorParcelas}
               </SpanBottomBar>
-
               <ButtonValorDesejado onClick={handleClick}>
                 <SpanButtonValorDesejado>Enviar</SpanButtonValorDesejado>
               </ButtonValorDesejado>
@@ -282,6 +268,37 @@ const SimularTaxas01 = (props: Porps) => {
   );
 };
 
+const DivButtom = styled.div`
+width: 100%;
+  @media(max-width: 575px) {
+    width: 400px;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+  }
+`;
+const DivGeneral = styled.div`
+display: grid;
+width: 100%;
+  @media(max-width: 575px) {
+   justify-content: center;
+   width: 400px;
+   /* display: grid; */
+  }
+`;
+const DivTitle = styled.div`
+width: 300px;
+  @media(max-width: 575px) {
+   text-align: center;
+  }
+`;
+const DivImagesTop = styled.div`
+ align-items: center;
+ display: flex;
+  @media(max-width: 575px) {
+   display: none;
+  }
+`;
 const SpanBottomBar = styled.span`
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
     30px/40px var(--unnamed-font-family-flexo);
@@ -336,6 +353,9 @@ const DivTable = styled.div`
   /* height: 128px; */
   background: var(--unnamed-color-f8f8f8) 0% 0% no-repeat padding-box;
   justify-content: center;
+  @media(max-width: 575px) {
+  overflow-y: auto;
+  }
 `;
 const SpanButtonValorDesejado = styled.span`
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
@@ -370,6 +390,9 @@ const ContainerLg = styled.div`
   margin-bottom: 100px;
   /* background: red; */
   /* border: 1px solid black; */
+  @media(max-width: 575px) {
+    max-width: 400px;
+  }
 `;
 const DivImg = styled.div`
   margin-top: 50px;
@@ -377,12 +400,21 @@ const DivImg = styled.div`
   align-items: center;
   display: flex;
   justify-content: left;
+  @media(max-width: 575px) {
+    display: grid;
+    justify-content: center;
+    margin-top: 30px;
+    width: 400px;
+  }
 `;
 const DivCalculo = styled.div`
   width: 100%;
   align-items: center;
   display: grid;
   justify-content: center;
+  @media(max-width: 575px) {
+    width: 400px;
+  }
 `;
 
 const Img = styled.img`
@@ -394,6 +426,9 @@ const Title = styled.span`
   text-align: left;
   letter-spacing: 0px;
   /* color: #228A95; */
+  @media(max-width: 575px) {
+    font: var(--unnamed-font-style-normal) normal normal bold 30px Flexo;
+  }
 `;
 
 const TitleValorDesejado = styled.span`
@@ -404,11 +439,18 @@ const TitleValorDesejado = styled.span`
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-228a95);
   text-align: center;
+  @media(max-width: 575px) {
+    margin-top: 30px;
+  }
 `;
 
 const DivValueAndButton = styled.div`
   display: flex;
   align-items: center;
+  @media(max-width: 575px) {
+    display: grid;
+    width: 400px; 
+  }
 `;
 
 const InputValorDesejado = styled.div`
@@ -421,6 +463,10 @@ const InputValorDesejado = styled.div`
   display: flex;
   justify-content: center;
   margin-right: 40px;
+  display: flex;
+  @media(max-width: 575px) {
+  width: 400px;
+  }
 `;
 const ValorDesejado = styled.input`
   font: var(--unnamed-font-style-normal) var(--unnamed-font-size-40)
@@ -438,6 +484,9 @@ const ValorDesejado = styled.input`
   width: 470px;
   height: 60px;
   border-radius: 5px;
+  @media(max-width: 575px) {
+    width: 400px;
+  }
 `;
 const ButtonValorDesejado = styled.div`
   width: 160px;

@@ -75,16 +75,16 @@
         {
             "id": 1,
             "clientId": 1,
-            "installmentInterest": 20.5,  "_comment1": "Juros parcelados",
-            "installmentInterestValue": 20.5, "_comment2": "Valor de juros parcelado",
+            "installmentInterest": 20.5,  
+            "installmentInterestValue": 20.5, 
             "comission": 5.5,
             "comissionValue": 122.21,
-            "installmentValue": 1338.76, "_comment3": "Valor da parcela",
+            "installmentValue": 1338.76, 
             "cardNumber": "4012001037141112",
-            "desiredValue": 2222, "_comment4": "Valor desejado",
-            "totalLoan": 2677.51, "_comment5": "Empréstimo total",
-            "installmentId": 4, "_comment6": "Id de parcelamento",
-            "rateTableId": 2, "_comment7": "Tabela de taxas"
+            "desiredValue": 2222, 
+            "totalLoan": 2677.51, 
+            "installmentId": 4, 
+            "rateTableId": 2
         }
     ]
 }

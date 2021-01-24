@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom"
 import styled from "styled-components";
 import PlusCicle from "../img/Grupo 270.png";
 import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
@@ -6,6 +7,7 @@ import EnvelopSerie from "../img/_ionicons_svg_md-filing.png";
 import TopBar from "../components/TopBar";
 
 import Api from "../services/api.json";
+import { useAuth } from '../context/Context2';
 import { cpfMask } from "./mask";
 
 import IconChecked from "../img/_ionicons_svg_ios-checkmark.png";
@@ -13,6 +15,10 @@ import IconChecked from "../img/_ionicons_svg_ios-checkmark.png";
 type Porps = {};
 
 const SolicitarEmprestimo04 = (props: Porps) => {
+  const { user, dadosUser, pedidoEmprestimo, createSolicitation } = useAuth()
+
+  // const [valDesejado, setvalDesejado] = useState(pedidoEmprestimo)
+
   interface RatetableModel {
     id: number;
     name: string;
@@ -30,7 +36,53 @@ const SolicitarEmprestimo04 = (props: Porps) => {
   }
 
   const [rateTable, setRateTable] = useState<RatetableModel[]>([]);
-  const search = () => {};
+  const search = () => { };
+
+  // const { id } = useParams()
+
+  const history = useHistory();
+  const handleClick = () => {
+
+    let data = new Date();
+    let numAleatorio = Math.floor(1000 * Math.random())
+    let numWithDate = numAleatorio + "" + Number(data);
+
+    interface Solicitations {
+      id?: number,
+      clientId?: number,
+      installmentInterest?: number,  /*comment1: Juros parcelados*/
+      installmentInterestValue?: number, /*comment2: Valor de juros parcelado*/
+      comission?: number,
+      comissionValue?: number,
+      installmentValue?: number, /*comment3: Valor da parcela*/
+      cardNumber?: string,
+      desiredValue?: number, /*comment4: Valor desejado*/
+      totalLoan?: number, /*comment5: Empréstimo total*/
+      installmentId?: number, /*comment6: Id de parcelamento*/
+      rateTableId?: number, /*comment7": "Tabela de taxas"*/
+    }
+
+    let objSolicitations: Solicitations = {
+      id: Number(numWithDate),
+      clientId: user?.id,
+      installmentInterest: pedidoEmprestimo?.jurosParcelas,  /*comment1: Juros parcelados*/
+      installmentInterestValue: 1, /*comment2: Valor de juros parcelado*/
+      comission: pedidoEmprestimo?.comissao,
+      comissionValue: 1,
+      installmentValue: 1, /*comment3: Valor da parcela*/
+      cardNumber: "Num cartão",
+      desiredValue: pedidoEmprestimo?.valorDesejado, /*comment4: Valor desejado*/
+      totalLoan: 1, /*comment5: Empréstimo total*/
+      installmentId: 1, /*comment6: Id de parcelamento*/
+      rateTableId: pedidoEmprestimo?.idTabela, /*comment7": "Tabela de taxas"*/
+    }
+
+    // console.log("Solicitação");
+    // console.log(objSolicitations);
+    createSolicitation(objSolicitations)
+    history.push(`/solicitar_emprestimo05/${Number(numWithDate)}`)
+  };
+
   const searchTable = () => {
     // const data:object = Api.rateTable[0];
     let arr = [Api.rateTable[0]];
@@ -42,6 +94,7 @@ const SolicitarEmprestimo04 = (props: Porps) => {
   useEffect(() => {
     searchTable();
   }, []);
+
   return (
     <React.Fragment>
       <TopBar />
@@ -88,12 +141,12 @@ const SolicitarEmprestimo04 = (props: Porps) => {
                     <SpanSelect>Valor desejado:</SpanSelect>
                   </DivTitleSelect>
                   <DivSelect>
-                    <Input placeholder="" type="text" name="v" />
+                    <Input placeholder="" type="text" name="valor_desejado" value={pedidoEmprestimo?.valorDesejado} disabled={true} />
                     {/* <Select name="" id="" >
                                             <SelectOption value="tabela">R$1.000,00</SelectOption>
                                         </Select> */}
-                  </DivSelect>
-                </DivBaseSelectTop2>
+                  </DivSelect >
+                </DivBaseSelectTop2 >
                 <DivBaseSelectTop2>
                   <DivTitleSelect>
                     <SpanSelect>Parcelas:</SpanSelect>
@@ -105,7 +158,7 @@ const SolicitarEmprestimo04 = (props: Porps) => {
                     </Select>
                   </DivSelect>
                 </DivBaseSelectTop2>
-              </div>
+              </div >
               <div
                 style={{
                   width: "100%",
@@ -133,7 +186,7 @@ const SolicitarEmprestimo04 = (props: Porps) => {
                   </DivSelect>
                 </DivBaseSelectTop2>
               </div>
-            </div>
+            </div >
             <SpanTipoContrato>Escolha o tipo de contrato:</SpanTipoContrato>
 
             <div
@@ -161,8 +214,7 @@ const SolicitarEmprestimo04 = (props: Porps) => {
               </div>
               <div style={{ width: "100%", display: "grid", paddingLeft: 20 }}>
                 <ButtonValorDesejado
-                  onClick={(event: React.MouseEvent<HTMLElement>) => search()}
-                  disabled={true}
+                  onClick={handleClick}
                 >
                   <img
                     src={IconChecked}
@@ -210,10 +262,10 @@ const SolicitarEmprestimo04 = (props: Porps) => {
                 ))}
               </DivTable>
             </div>
-          </div>
-        </ContainerLg>
-      </Wrapper>
-    </React.Fragment>
+          </div >
+        </ContainerLg >
+      </Wrapper >
+    </React.Fragment >
   );
 };
 
